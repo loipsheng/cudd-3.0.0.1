@@ -1,0 +1,452 @@
+[
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddAddAbs.o cudd/cuddAddAbs.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddAddAbs.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddAddApply.o cudd/cuddAddApply.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddAddApply.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddAddFind.o cudd/cuddAddFind.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddAddFind.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddAddInv.o cudd/cuddAddInv.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddAddInv.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddAddIte.o cudd/cuddAddIte.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddAddIte.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddAddNeg.o cudd/cuddAddNeg.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddAddNeg.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddAddWalsh.o cudd/cuddAddWalsh.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddAddWalsh.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddAndAbs.o cudd/cuddAndAbs.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddAndAbs.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddAnneal.o cudd/cuddAnneal.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddAnneal.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddApa.o cudd/cuddApa.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddApa.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddAPI.o cudd/cuddAPI.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddAPI.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddApprox.o cudd/cuddApprox.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddApprox.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddBddAbs.o cudd/cuddBddAbs.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddBddAbs.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddBddCorr.o cudd/cuddBddCorr.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddBddCorr.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddBddIte.o cudd/cuddBddIte.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddBddIte.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddBridge.o cudd/cuddBridge.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddBridge.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddCache.o cudd/cuddCache.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddCache.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddCheck.o cudd/cuddCheck.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddCheck.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddClip.o cudd/cuddClip.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddClip.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddCof.o cudd/cuddCof.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddCof.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddCompose.o cudd/cuddCompose.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddCompose.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddDecomp.o cudd/cuddDecomp.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddDecomp.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddEssent.o cudd/cuddEssent.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddEssent.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddExact.o cudd/cuddExact.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddExact.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddExport.o cudd/cuddExport.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddExport.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddGenCof.o cudd/cuddGenCof.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddGenCof.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddGenetic.o cudd/cuddGenetic.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddGenetic.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddGroup.o cudd/cuddGroup.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddGroup.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddHarwell.o cudd/cuddHarwell.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddHarwell.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddInit.o cudd/cuddInit.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddInit.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddInteract.o cudd/cuddInteract.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddInteract.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddLCache.o cudd/cuddLCache.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddLCache.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddLevelQ.o cudd/cuddLevelQ.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddLevelQ.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddLinear.o cudd/cuddLinear.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddLinear.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddLiteral.o cudd/cuddLiteral.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddLiteral.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddMatMult.o cudd/cuddMatMult.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddMatMult.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddPriority.o cudd/cuddPriority.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddPriority.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddRead.o cudd/cuddRead.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddRead.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddRef.o cudd/cuddRef.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddRef.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddReorder.o cudd/cuddReorder.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddReorder.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddSat.o cudd/cuddSat.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddSat.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddSign.o cudd/cuddSign.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddSign.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddSolve.o cudd/cuddSolve.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddSolve.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddSplit.o cudd/cuddSplit.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddSplit.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddSubsetHB.o cudd/cuddSubsetHB.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddSubsetHB.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddSubsetSP.o cudd/cuddSubsetSP.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddSubsetSP.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddSymmetry.o cudd/cuddSymmetry.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddSymmetry.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddTable.o cudd/cuddTable.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddTable.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddUtil.o cudd/cuddUtil.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddUtil.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddWindow.o cudd/cuddWindow.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddWindow.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddZddCount.o cudd/cuddZddCount.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddZddCount.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddZddFuncs.o cudd/cuddZddFuncs.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddZddFuncs.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddZddGroup.o cudd/cuddZddGroup.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddZddGroup.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddZddIsop.o cudd/cuddZddIsop.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddZddIsop.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddZddLin.o cudd/cuddZddLin.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddZddLin.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddZddMisc.o cudd/cuddZddMisc.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddZddMisc.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddZddPort.o cudd/cuddZddPort.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddZddPort.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddZddReord.o cudd/cuddZddReord.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddZddReord.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddZddSetop.o cudd/cuddZddSetop.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddZddSetop.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddZddSymm.o cudd/cuddZddSymm.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddZddSymm.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o cudd/cudd_libcudd_la-cuddZddUtil.o cudd/cuddZddUtil.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cudd/cuddZddUtil.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o util/cudd_libcudd_la-cpu_stats.o util/cpu_stats.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/util/cpu_stats.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o util/cudd_libcudd_la-cpu_time.o util/cpu_time.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/util/cpu_time.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o util/cudd_libcudd_la-cstringstream.o util/cstringstream.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/util/cstringstream.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o util/cudd_libcudd_la-datalimit.o util/datalimit.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/util/datalimit.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o util/cudd_libcudd_la-pathsearch.o util/pathsearch.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/util/pathsearch.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o util/cudd_libcudd_la-pipefork.o util/pipefork.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/util/pipefork.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o util/cudd_libcudd_la-prtime.o util/prtime.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/util/prtime.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o util/cudd_libcudd_la-safe_mem.o util/safe_mem.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/util/safe_mem.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o util/cudd_libcudd_la-strsav.o util/strsav.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/util/strsav.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o util/cudd_libcudd_la-texpand.o util/texpand.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/util/texpand.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o util/cudd_libcudd_la-ucbqsort.o util/ucbqsort.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/util/ucbqsort.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o st/cudd_libcudd_la-st.o st/st.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/st/st.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o epd/cudd_libcudd_la-epd.o epd/epd.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/epd/epd.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o mtr/cudd_libcudd_la-mtrBasic.o mtr/mtrBasic.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/mtr/mtrBasic.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./cudd -I./st -I./epd -I./mtr -I./util -Wall -Wextra -g -O3 -o mtr/cudd_libcudd_la-mtrGroup.o mtr/mtrGroup.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/mtr/mtrGroup.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./util -I./mtr -I./epd -I./cudd -I./st -Wall -Wextra -g -O3 -o dddmp/dddmp_libdddmp_la-dddmpBinary.o dddmp/dddmpBinary.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/dddmp/dddmpBinary.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./util -I./mtr -I./epd -I./cudd -I./st -Wall -Wextra -g -O3 -o dddmp/dddmp_libdddmp_la-dddmpConvert.o dddmp/dddmpConvert.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/dddmp/dddmpConvert.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./util -I./mtr -I./epd -I./cudd -I./st -Wall -Wextra -g -O3 -o dddmp/dddmp_libdddmp_la-dddmpDbg.o dddmp/dddmpDbg.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/dddmp/dddmpDbg.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./util -I./mtr -I./epd -I./cudd -I./st -Wall -Wextra -g -O3 -o dddmp/dddmp_libdddmp_la-dddmpLoad.o dddmp/dddmpLoad.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/dddmp/dddmpLoad.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./util -I./mtr -I./epd -I./cudd -I./st -Wall -Wextra -g -O3 -o dddmp/dddmp_libdddmp_la-dddmpLoadCnf.o dddmp/dddmpLoadCnf.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/dddmp/dddmpLoadCnf.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./util -I./mtr -I./epd -I./cudd -I./st -Wall -Wextra -g -O3 -o dddmp/dddmp_libdddmp_la-dddmpNodeAdd.o dddmp/dddmpNodeAdd.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/dddmp/dddmpNodeAdd.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./util -I./mtr -I./epd -I./cudd -I./st -Wall -Wextra -g -O3 -o dddmp/dddmp_libdddmp_la-dddmpNodeBdd.o dddmp/dddmpNodeBdd.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/dddmp/dddmpNodeBdd.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./util -I./mtr -I./epd -I./cudd -I./st -Wall -Wextra -g -O3 -o dddmp/dddmp_libdddmp_la-dddmpNodeCnf.o dddmp/dddmpNodeCnf.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/dddmp/dddmpNodeCnf.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./util -I./mtr -I./epd -I./cudd -I./st -Wall -Wextra -g -O3 -o dddmp/dddmp_libdddmp_la-dddmpStoreAdd.o dddmp/dddmpStoreAdd.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/dddmp/dddmpStoreAdd.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./util -I./mtr -I./epd -I./cudd -I./st -Wall -Wextra -g -O3 -o dddmp/dddmp_libdddmp_la-dddmpStoreBdd.o dddmp/dddmpStoreBdd.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/dddmp/dddmpStoreBdd.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./util -I./mtr -I./epd -I./cudd -I./st -Wall -Wextra -g -O3 -o dddmp/dddmp_libdddmp_la-dddmpStoreCnf.o dddmp/dddmpStoreCnf.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/dddmp/dddmpStoreCnf.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./util -I./mtr -I./epd -I./cudd -I./st -Wall -Wextra -g -O3 -o dddmp/dddmp_libdddmp_la-dddmpStoreMisc.o dddmp/dddmpStoreMisc.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/dddmp/dddmpStoreMisc.c"
+    },
+    {
+        "command": "cc -c -DHAVE_CONFIG_H -I. -I./util -I./mtr -I./epd -I./cudd -I./st -Wall -Wextra -g -O3 -o dddmp/dddmp_libdddmp_la-dddmpUtil.o dddmp/dddmpUtil.c",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/dddmp/dddmpUtil.c"
+    },
+    {
+        "command": "c++ -c -DHAVE_CONFIG_H -I. -I./cudd -I./mtr -I./epd -I./st -Wall -Wextra -std=c++0x -g -O3 -o cplusplus/cplusplus_libobj_la-cuddObj.o cplusplus/cuddObj.cc",
+        "directory": "/home/leeotus/workshop/cudd-3.0.0",
+        "file": "/home/leeotus/workshop/cudd-3.0.0/cplusplus/cuddObj.cc"
+    }
+]

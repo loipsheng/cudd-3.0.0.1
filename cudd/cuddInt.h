@@ -491,7 +491,7 @@ struct DdManager {
     int	numberXovers;		/**< number of crossovers for GA */
     unsigned int randomizeOrder; /**< perturb the next reordering threshold */
     DdLocalCache *localCaches;	/**< local caches currently in existence */
-    void *hooks;		/**< application-specific field (used by vis) */
+    void *hooks;		/**< application-specific field (used by vis)           应用程序专用字段*/
     DdHook *preGCHook;		/**< hooks to be called before GC */
     DdHook *postGCHook;		/**< hooks to be called after GC */
     DdHook *preReorderingHook;	/**< hooks to be called before reordering */

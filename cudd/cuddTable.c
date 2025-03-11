@@ -723,9 +723,9 @@ cuddFreeTable(
 /**
   @brief Performs garbage collection on the %BDD and %ZDD unique tables.
 
-  @details If clearCache is 0, the cache is not cleared. This should
+  @details If clearCache is 0, the cache is not cleared. This should	如果 clearCache 为 0，则不清除缓存。
   only be specified if the cache has been cleared right before calling
-  cuddGarbageCollect. (As in the case of dynamic reordering.)
+  cuddGarbageCollect. (As in the case of dynamic reordering.)	只有在调用  cuddGarbageCollect. (如动态重排序的情况）。
 
   @return the total number of deleted nodes.
 

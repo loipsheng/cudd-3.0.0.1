@@ -146,18 +146,20 @@ Cudd_RecursiveDeref(
 #ifdef DD_STATS
 	    table->nodesDropped++;
 #endif
+        //常量节点的情况
 	    if (cuddIsConstant(N)) {
-		table->constants.dead++;
-		N = stack[--SP];
-	    } else {
-		ord = table->perm[N->index];
-		stack[SP++] = Cudd_Regular(cuddE(N));
-		table->subtables[ord].dead++;
-		N = cuddT(N);
+		table->constants.dead++;        // 记录常量节点死亡数量
+		N = stack[--SP];                // 弹出栈顶元素，处理下一个节点
+	    } 
+        else {                          // 非常量节点的情况
+		ord = table->perm[N->index];    // 获取当前节点的层级
+		stack[SP++] = Cudd_Regular(cuddE(N));// 将 Else 子节点入栈
+		table->subtables[ord].dead++;   // 记录该层的死亡节点数量
+		N = cuddT(N);                   // 继续处理 Then 子节点
 	    }
-	} else {
-	    cuddSatDec(N->ref);
-	    N = stack[--SP];
+	} else {                            //递减其他引用
+	    cuddSatDec(N->ref);             // 如果节点引用计数 >1，仅递减 1，不回收(终端节点可能会有多个父节点，所以是递减)
+	    N = stack[--SP];                // 继续处理下一个节点
 	}
     } while (SP != 0);
 

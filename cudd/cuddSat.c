@@ -102,11 +102,11 @@ static DdNode * ddGetLargestCubeUnate(DdManager *dd, DdNode *f, int *phases, st_
 
 
 /**
-  @brief Returns the value of a %DD for a given variable assignment.
+  @brief Returns the value of a %DD for a given variable assignment.返回给定变量赋值的 %DD 值。
 
   @details The variable assignment is passed in an array of int's,
   that should specify a zero or a one for each variable in the support
-  of the function.
+  of the function.变量赋值通过一个 int 数组传递，该数组应为函数支持的每个变量指定一个 0 或 1。
 
   @return a pointer to a constant node. No new nodes are produced.
 

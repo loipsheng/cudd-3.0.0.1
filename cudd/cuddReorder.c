@@ -1462,7 +1462,7 @@ ddSiftingAux(
     Move	*moveDown;		/* list of down moves */
     int		initialSize;
     int		result;
-	//1️. 初始化阶段
+	//1. 初始化阶段
     initialSize = (int) (table->keys - table->isolated);
 
     moveDown = NULL;

@@ -77,7 +77,7 @@
 /**
  * @brief returns a long which represents the elapsed processor
  * time in milliseconds since some constant reference.
- */
+ 返回一个 long，表示从某个常量引用开始经过的处理器时间，以毫秒为单位。时间（以毫秒为单位）。*/
 long
 util_cpu_time(void)
 {
@@ -113,7 +113,7 @@ util_cpu_time(void)
  * @brief returns a long which represents the elapsed processor
  * time in milliseconds since some constant reference.  It includes
  * waited-for terminated children.
- */
+ 返回一个 long，表示从某个常量引用开始的处理器运行时间（以毫秒为单位）。 它包括等待终止的子进程。*/
 long
 util_cpu_ctime(void)
 {

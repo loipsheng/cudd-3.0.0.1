@@ -785,7 +785,7 @@ cuddGarbageCollect(
 
     /* If many nodes are being reclaimed, we want to resize the tables
     ** more aggressively, to reduce the frequency of garbage collection.
-    */
+    如果有很多节点被回收，我们就需要更积极地调整表的大小，以减少垃圾回收的频率*/
     if (clearCache && unique->gcFrac == DD_GC_FRAC_LO &&
 	unique->slots <= unique->looseUpTo && unique->stash != NULL) {
 	unique->minDead = (unsigned) (DD_GC_FRAC_HI * (double) unique->slots);
@@ -1318,8 +1318,8 @@ if (subtable->keys > subtable->maxKeys) {
     looking->index = index;
     cuddT(looking) = T;
     cuddE(looking) = E;
-    looking->next = *previousP;	// 新节点的 next 指针指向当前链表的第一个节点
-    *previousP = looking;		// 更新链表头指针，使新节点成为链表的第一个节点
+    looking->next = *previousP;	// 插入新节点
+    *previousP = looking;		// SP二级指针？前一个节点的next指向looking
     cuddSatInc(T->ref);		/* we know T is a regular pointer 我们知道 T 是一个正则指针 */
     cuddRef(E);
 

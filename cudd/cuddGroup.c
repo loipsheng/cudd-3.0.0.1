@@ -543,10 +543,10 @@ ddReorderChildren(
 
 /**
   @brief Finds the lower and upper bounds of the group represented
-  by treenode.
+  by treenode.查找由 treenode 表示的组的下限和上限。
 
   @details From the index and size fields we need to derive the
-  current positions, and find maximum and minimum.
+  current positions, and find maximum and minimum.我们需要根据索引和大小字段推导出当前位置，并找出最大值和最小值。
 
   @sideeffect The bounds are returned as side effects.
 
@@ -561,9 +561,9 @@ ddFindNodeHiLo(
     int low;
     int high;
 
-    /* Check whether no variables in this group already exist.
-    ** If so, return immediately. The calling procedure will know from
-    ** the values of upper that no reordering is needed.
+    /* Check whether no variables in this group already exist. 检查该组中是否已不存在变量。
+    ** If so, return immediately. The calling procedure will know from	如果是，则立即返回。
+    ** the values of upper that no reordering is needed.	调用存储过程将从 upper 的值中得知无需重新排序。
     */
     if ((int) treenode->low >= table->size) {
 	*lower = table->size;
@@ -575,11 +575,11 @@ ddFindNodeHiLo(
     high = (int) (low + treenode->size - 1);
 
     if (high >= table->size) {
-	/* This is the case of a partially existing group. The aim is to
-	** reorder as many variables as safely possible.  If the tree
-	** node is terminal, we just reorder the subset of the group
-	** that is currently in existence.  If the group has
-	** subgroups, then we only reorder those subgroups that are
+	/* This is the case of a partially existing group. The aim is to	这是一个部分存在的组的情况。
+	** reorder as many variables as safely possible.  If the tree		我们的目的是尽可能安全地对变量重新排序。
+	** node is terminal, we just reorder the subset of the group		如果树节点是终端，我们只需对当前存在的分组子集重新排序。 
+	** that is currently in existence.  If the group has				如果分组有子分组，那么我们只对完全实例化的子分组重新排序。
+	** subgroups, then we only reorder those subgroups that are			这样，我们就能避免将一个组打散。
 	** fully instantiated.  This way we avoid breaking up a group.
 	*/
 	MtrNode *auxnode = treenode->child;
@@ -589,7 +589,7 @@ ddFindNodeHiLo(
 	    /* Search the subgroup that strands the table->size line.
 	    ** If the first group starts at 0 and goes past table->size
 	    ** upper will get -1, thus correctly signaling that no reordering
-	    ** should take place.
+	    ** should take place.如果第一组从 0 开始，经过 table->size upper 将得到-1，从而正确地表明不应重新排序。
 	    */
 	    while (auxnode != NULL) {
 		int thisLower = table->perm[auxnode->low];

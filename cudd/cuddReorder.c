@@ -485,7 +485,7 @@ cuddSifting(
     int	previousSize;
 #endif
 	//1.  初始化
-    size = table->size;
+    size = table->size;			//唯一子表数
     /* Find order in which to sift variables. 查找筛选变量的顺序。*/
     var = ALLOC(IndexKey,size);
     if (var == NULL) {
@@ -763,21 +763,21 @@ cuddSwapInPlace(
 
     table->ddTotalNumberSwapping++;
 
-    /* Get parameters of x subtable. */
+    /* Get parameters of x subtable. 		获取x唯一子表参数*/
     xindex = table->invperm[x];
     xlist = table->subtables[x].nodelist;
     oldxkeys = table->subtables[x].keys;
     xslots = table->subtables[x].slots;
     xshift = table->subtables[x].shift;
 
-    /* Get parameters of y subtable. */
+    /* Get parameters of y subtable.		获取y唯一子表参数 */
     yindex = table->invperm[y];
     ylist = table->subtables[y].nodelist;
     oldykeys = table->subtables[y].keys;
     yslots = table->subtables[y].slots;
     yshift = table->subtables[y].shift;
 
-    if (!cuddTestInteract(table,xindex,yindex)) {
+    if (!cuddTestInteract(table,xindex,yindex)) {		//检查 x 和 y 是否有交互
 #ifdef DD_STATS
 	table->totalNISwaps++;
 #endif
@@ -787,9 +787,9 @@ cuddSwapInPlace(
 	newxkeys = 0;
 	newykeys = oldykeys;
 
-	/* Check whether the two projection functions involved in this
-	** swap are isolated. At the end, we'll be able to tell how many
-	** isolated projection functions are there by checking only these
+	/* Check whether the two projection functions involved in this	 	检查参与交换的两个投影函数是否是孤立的。
+	** swap are isolated. At the end, we'll be able to tell how many	最后，我们只需再次检查这两个函数，就能知道有多少个孤立的投影函数。
+	** isolated projection functions are there by checking only these	这样做是为了从节点计数中剔除孤立的投影函数。
 	** two functions again. This is done to eliminate the isolated
 	** projection functions from the node count.
 	*/
@@ -797,39 +797,46 @@ cuddSwapInPlace(
 		     (table->vars[yindex]->ref == 1));
 
 	/* The nodes in the x layer that do not depend on
-	** y will stay there; the others are put in a chain.
-	** The chain is handled as a LIFO; g points to the beginning.
-	*/
-	g = NULL;
+	** y will stay there; the others are put in a chain.	x 层中不依赖于 y 的节点将保留在 x 层；其他节点将放入一个链中。
+	** The chain is handled as a LIFO; g points to the beginning.	链的处理方式是后进先出；g 指向起点。
+	
+	代码的核心逻辑是调整 x 层哈希表，将依赖 y 的节点迁移，并根据节点密度决定是否调整 x 层的哈希表大小;
+	迁移的节点存入 g 链表，若需要调整x层哈希表，则属于 x 层的节点存入 h 链表，再重新插入新分配的哈希表*/
+
+	//1. 遍历 x 层的哈希表，将部分节点移到 y 层
+	g = NULL;				//初始化链表g
 	if ((oldxkeys >= xslots || (unsigned) xslots == table->initSlots) &&
 	    oldxkeys <= DD_MAX_SUBTABLE_DENSITY * xslots) {
-	    for (i = 0; i < xslots; i++) {
-		previousP = &(xlist[i]);
-		f = *previousP;
-		while (f != sentinel) {
-		    next = f->next;
-		    f1 = cuddT(f); f0 = cuddE(f);
-		    if (f1->index != (DdHalfWord) yindex &&
-			Cudd_Regular(f0)->index != (DdHalfWord) yindex) {
-			/* stays */
-			newxkeys++;
-			*previousP = f;
-			previousP = &(f->next);
-		    } else {
-			f->index = yindex;
-			f->next = g;
-			g = f;
-		    }
-		    f = next;
-		} /* while there are elements in the collision chain */
-		*previousP = sentinel;
-	    } /* for each slot of the x subtable */
-	} else {		/* resize xlist */
+	    for (i = 0; i < xslots; i++) {		// 遍历 x 层的所有哈希槽
+			previousP = &(xlist[i]);
+			f = *previousP;						// 取出该槽的第一个节点
+			while (f != sentinel) {				// 遍历槽内所有节点
+				next = f->next;
+				f1 = cuddT(f); f0 = cuddE(f);
+				if (f1->index != (DdHalfWord) yindex &&
+				Cudd_Regular(f0)->index != (DdHalfWord) yindex) {		
+				/* stays  如果 T 和 E 分支都不依赖于 y，则该节点仍然属于 x 层*/
+				newxkeys++;
+				*previousP = f;
+				previousP = &(f->next);
+				} else {						// 否则，x层节点和y层节点有依赖关系，x层节点属于 y 层
+				f->index = yindex;
+				f->next = g;					// 加入到 g 链表（后进先出）只有 f 本身的 T 分支 f1 或 E 分支 f0 依赖 y，才会把 f 放入 g 并改成 yindex
+				g = f;							//但 f1 或 f0 本身可能并不在 g 里，它们的 index 可能还是 x（原始 x 变量）
+				}
+				f = next;
+			} /* while there are elements in the collision chain 当该变量在冲突链中*/
+			*previousP = sentinel;
+	    } /* for each slot of the x subtable for循环遍历 x 子表格的每个插槽——也就是该层里面所有存在的节点*/
+	} 
+
+	//2. 需要调整 x 层哈希表大小
+	else {		/* resize xlist 		如果 x 层的哈希表不适合当前的节点数量，需要重新分配哈希表。*/
 	    DdNode *h = NULL;
 	    DdNodePtr *newxlist;
 	    unsigned int newxslots;
 	    int newxshift;
-	    /* Empty current xlist. Nodes that stay go to list h;
+	    /* Empty current xlist. Nodes that stay go to list h;遍历 x 层，把需要保留的节点放入 h 链表，需要移动的放入 g
 	    ** nodes that move go to list g. */
 	    for (i = 0; i < xslots; i++) {
 		f = xlist[i];
@@ -838,31 +845,33 @@ cuddSwapInPlace(
 		    f1 = cuddT(f); f0 = cuddE(f);
 		    if (f1->index != (DdHalfWord) yindex &&
 			Cudd_Regular(f0)->index != (DdHalfWord) yindex) {
-			/* stays */
-			f->next = h;
+			/* stays 						 保留的节点加入 h 链表*/
+			f->next = h;		
 			h = f;
 			newxkeys++;
 		    } else {
 			f->index = yindex;
-			f->next = g;
+			f->next = g;					// 迁移到 g链表
 			g = f;
 		    }
 		    f = next;
 		} /* while there are elements in the collision chain */
 	    } /* for each slot of the x subtable */
-	    /* Decide size of new subtable. */
+
+	    /* 3. 计算新的哈希表大小  Decide size of new subtable. 决定新子表格的大小。*/
 	    newxshift = xshift;
 	    newxslots = xslots;
-	    while ((unsigned) oldxkeys > DD_MAX_SUBTABLE_DENSITY * newxslots) {
+	    while ((unsigned) oldxkeys > DD_MAX_SUBTABLE_DENSITY * newxslots) {//如果 oldxkeys 超过最大密度，则 扩大 哈希表（newxslots <<= 1）
 		newxshift--;
 		newxslots <<= 1;
 	    }
 	    while ((unsigned) oldxkeys < newxslots &&
-		   newxslots > table->initSlots) {
+		   newxslots > table->initSlots) {//如果 oldxkeys 太小，则 缩小 哈希表（newxslots >>= 1）
 		newxshift++;
 		newxslots >>= 1;
 	    }
-	    /* Try to allocate new table. Be ready to back off. */
+
+	    /* 4. 重新分配新的哈希表 Try to allocate new table. Be ready to back off. 尝试分配新表。随时准备回溯。*/
 	    saveHandler = MMoutOfMemory;
 	    MMoutOfMemory = table->outOfMemCallback;
 	    newxlist = ALLOC(DdNodePtr, newxslots);
@@ -883,19 +892,20 @@ cuddSwapInPlace(
 		xshift = newxshift;
 		xlist = newxlist;
 	    }
-	    /* Initialize new subtable. */
+
+	    /*5.重新插入 h 链表中的节点 Initialize new subtable.*/
 	    for (i = 0; i < xslots; i++) {
 		xlist[i] = sentinel;
 	    }
-	    /* Move nodes that were parked in list h to their new home. */
+	    /* Move nodes that were parked in list h to their new home. 将停放在列表 h 中的节点移动到新的位置。*/
 	    f = h;
 	    while (f != NULL) {
 		next = f->next;
 		f1 = cuddT(f);
 		f0 = cuddE(f);
-		/* Check xlist for pair (f11,f01). */
+		/* Check xlist for pair (f11,f01). 检查 x 列表中的配对 (f11,f01)*/
 		posn = ddHash(f1, f0, xshift);
-		/* For each element tmp in collision list xlist[posn]. */
+		/* For each element tmp in collision list xlist[posn]. 对于碰撞列表 xlist[posn] 中的每个元素 tmp。*/
 		previousP = &(xlist[posn]);
 		tmp = *previousP;
 		while (f1 < cuddT(tmp)) {
@@ -915,8 +925,8 @@ cuddSwapInPlace(
 #ifdef DD_COUNT
 	table->swapSteps += oldxkeys - newxkeys;
 #endif
-	/* Take care of the x nodes that must be re-expressed.
-	** They form a linked list pointed by g. Their index has been
+	/* Take care of the x nodes that must be re-expressed.			处理必须重新表达的 x 节点。
+	** They form a linked list pointed by g. Their index has been	它们构成了一个由 g 指向的链表。已经改为 yindex。
 	** already changed to yindex.
 	*/
 	f = g;
@@ -927,10 +937,10 @@ cuddSwapInPlace(
 #ifdef DD_DEBUG
 	    assert(!(Cudd_IsComplement(f1)));
 #endif
-	    if ((int) f1->index == yindex) {
-		f11 = cuddT(f1); f10 = cuddE(f1);
+	    if ((int) f1->index == yindex) {	//f1->index == yindex：说明 f1 已经被处理过，属于 y 变量相关的部分
+		f11 = cuddT(f1); f10 = cuddE(f1);	
 	    } else {
-		f11 = f10 = f1;
+		f11 = f10 = f1;						//这里的目的是什么——f1 还未被转换成 yindex，那么它的 T 和 E 分支（即 f11 和 f10）应该保持不变
 	    }
 #ifdef DD_DEBUG
 	    assert(!(Cudd_IsComplement(f11)));
@@ -944,14 +954,14 @@ cuddSwapInPlace(
 		f01 = f00 = f0;
 	    }
 	    if (comple) {
-		f01 = Cudd_Not(f01);
+		f01 = Cudd_Not(f01);				//这里f01not后变成什么？f10还是f11?与下面判断f11==f01有什么联系
 		f00 = Cudd_Not(f00);
 	    }
 	    /* Decrease ref count of f1. */
 	    cuddSatDec(f1->ref);
 	    /* Create the new T child. */
-	    if (f11 == f01) {
-		newf1 = f11;
+	    if (f11 == f01) {					//这个判断的目的是什么
+		newf1 = f11;						//说明 T 分支和 E 分支相同，那就不需要创建新的 BDD 节点，直接复用 f11
 		cuddSatInc(newf1->ref);
 	    } else {
 		/* Check xlist for triple (xindex,f11,f01). */
@@ -973,7 +983,7 @@ cuddSwapInPlace(
 		    newf1 = cuddDynamicAllocNode(table);
 		    if (newf1 == NULL)
 			goto cuddSwapOutOfMem;
-		    newf1->index = xindex; newf1->ref = 1;
+		    newf1->index = xindex; newf1->ref = 1;		//这里为什么还是xindex不是index，之前放在G链表的时候不是已经设置为yindex了吗？
 		    cuddT(newf1) = f11;
 		    cuddE(newf1) = f01;
 		    /* Insert newf1 in the collision list xlist[posn];
@@ -1046,9 +1056,9 @@ cuddSwapInPlace(
 	    }
 	    cuddE(f) = newf0;
 
-	    /* Insert the modified f in ylist.
-	    ** The modified f does not already exists in ylist.
-	    ** (Because of the uniqueness of the cofactors.)
+	    /* Insert the modified f in ylist.						将修改后的 f 插入 ylist。
+	    ** The modified f does not already exists in ylist.		修改后的 f 不存在于 ylist 中。
+	    ** (Because of the uniqueness of the cofactors.)		因为辅因子是唯一的
 	    */
 	    posn = ddHash(newf1, newf0, yshift);
 	    newykeys++;
@@ -1142,7 +1152,7 @@ cuddSwapInPlace(
 	table->isolated += (unsigned int) isolated;
     }
 
-    /* Set the appropriate fields in table. */
+    /* Set the appropriate fields in table. 在表格中设置相应字段*/
     table->subtables[x].nodelist = ylist;
     table->subtables[x].slots = yslots;
     table->subtables[x].shift = yshift;
@@ -1493,7 +1503,7 @@ ddSiftingAux(
 	/* At this point x --> xHigh unless bounding occurred. */
 	if (moveDown == (Move *) CUDD_OUT_OF_MEM) goto ddSiftingAuxOutOfMem;
 	if (moveDown != NULL) {
-	    x = moveDown->y;
+	    x = moveDown->y;			//将变量 x 更新为最新位置。
 	}
 	moveUp = ddSiftingUp(table,x,xLow);
 	if (moveUp == (Move *) CUDD_OUT_OF_MEM) goto ddSiftingAuxOutOfMem;
@@ -1583,7 +1593,7 @@ ddSiftingUp(
 #endif
 	//1. 初始化操作
     moves = NULL;
-    yindex = table->invperm[y];
+    yindex = table->invperm[y];			//输入层级，可以得到索引;
 
     /* Initialize the lower bound. 初始化下限。
     ** The part of the DD below y will not change. DD 在 y  				以下的部分不会改变。
@@ -1605,7 +1615,7 @@ ddSiftingUp(
 	//3. 开始变量上移过程
     x = cuddNextLow(table,y);				// 获取 y 上方（靠近根节点）的变量
     while (x >= xLow && L <= limitSize) {	// 没到达xlow且节点数未显著增长
-		xindex = table->invperm[x];
+			xindex = table->invperm[x];
 #ifdef DD_DEBUG
 	checkL = (int) (table->keys - table->isolated);
 	for (z = xLow + 1; z < y; z++) {
@@ -1619,27 +1629,27 @@ ddSiftingUp(
 	checkL -= (int) table->subtables[y].keys - isolated;
 	assert(L == checkL);
 #endif
-	//4. 交换变量
-		size = cuddSwapInPlace(table,x,y);
-		if (size == 0) goto ddSiftingUpOutOfMem;
-	/*5. 更新lower界限 (L) Update the lower bound. */
-		if (cuddTestInteract(table,xindex,yindex)) {
-			isolated = table->vars[xindex]->ref == 1;
-			L += (int) table->subtables[y].keys - isolated;
-		}
-	//6. 记录本次移动
-		move = (Move *) cuddDynamicAllocNode(table);
-		if (move == NULL) goto ddSiftingUpOutOfMem;
-		move->x = x;
-		move->y = y;
-		move->size = size;
-		move->next = moves;					// 插入到移动链表;	使用链表将所有的移动记录串联起来，方便回溯和撤销
-		moves = move;
-	//7. 检查终止条件
-		if ((double) size > (double) limitSize * table->maxGrowth) break;	// 增长太多则停止
-		if (size < limitSize) limitSize = size;								// 更新最小 BDD 大小
-		y = x;
-		x = cuddNextLow(table,y);
+		//4. 交换变量
+			size = cuddSwapInPlace(table,x,y);				//成功的话返回节点数目
+			if (size == 0) goto ddSiftingUpOutOfMem;
+		/*5. 更新lower界限 (L) Update the lower bound. */
+			if (cuddTestInteract(table,xindex,yindex)) {
+				isolated = table->vars[xindex]->ref == 1;
+				L += (int) table->subtables[y].keys - isolated;
+			}
+		//6. 记录本次移动
+			move = (Move *) cuddDynamicAllocNode(table);
+			if (move == NULL) goto ddSiftingUpOutOfMem;
+			move->x = x;
+			move->y = y;
+			move->size = size;
+			move->next = moves;					// 插入到移动链表;	使用链表将所有的移动记录串联起来，方便回溯和撤销
+			moves = move;
+		//7. 检查终止条件
+			if ((double) size > (double) limitSize * table->maxGrowth) break;	// 增长太多则停止
+			if (size < limitSize) limitSize = size;								// 更新最小 BDD 大小
+			y = x;
+			x = cuddNextLow(table,y);
     }
     return(moves);
 	//8. 结束处理
@@ -1772,9 +1782,9 @@ ddSiftingBackward(
     }
 
     for (move = moves; move != NULL; move = move->next) {
-	if (move->size == size) return(1);
-	res = cuddSwapInPlace(table,(int)move->x,(int)move->y);
-	if (!res) return(0);
+		if (move->size == size) return(1);
+		res = cuddSwapInPlace(table,(int)move->x,(int)move->y);
+		if (!res) return(0);
     }
 
     return(1);

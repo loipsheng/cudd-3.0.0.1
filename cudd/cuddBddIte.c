@@ -1000,7 +1000,7 @@ cuddBddAndRecur(
     }
 
     /* At this point f and g are not constant. 不是常量，则是非终端节点*/
-    if (f > g) { /* Try to increase cache efficiency.交换操作数，提升缓存命中率;令 f 始终小于等于 g，确保相同的输入顺序一致，提高缓存命中率。*/
+    if (f > g) { /* Try to increase cache efficiency.运算正规化，提升缓存命中率;令 地址小的在前面，遇到顺序不同会调转，提高效率*/
 	DdNode *tmp = f;
 	f = g;
 	g = tmp;

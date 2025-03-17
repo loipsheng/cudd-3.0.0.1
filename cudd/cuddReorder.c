@@ -495,9 +495,9 @@ cuddSifting(
 
 	//2. 记录变量的索引和节点数
     for (i = 0; i < size; i++) {
-	x = table->perm[i];
+	x = table->perm[i];			//输入索引得到层级
 	var[i].index = i;
-	var[i].keys = table->subtables[x].keys;
+	var[i].keys = table->subtables[x].keys;				//第几层就是第几个变量对应的唯一子表
     }
 	//3. 排序变量
     util_qsort(var,size,sizeof(IndexKey),ddUniqueCompare);		//按节点数对 var 数组从大到小排序，优先处理节点多的变量。
@@ -516,7 +516,7 @@ cuddSifting(
 				table->autoDyn = 0; /* prevent further reordering */
 				break;
 			}//自定义终止回调函数触发，停止筛选
-		x = table->perm[var[i].index];
+		x = table->perm[var[i].index];			//一层一层的进行sifting筛选；输入索引返回层级；x是第一层慢慢往下循环
 		//跳过无法筛选的变量
 		if (x < lower || x > upper || table->subtables[x].bindVar == 1)
 			continue;
@@ -815,16 +815,16 @@ cuddSwapInPlace(
 				f1 = cuddT(f); f0 = cuddE(f);
 				if (f1->index != (DdHalfWord) yindex &&
 				Cudd_Regular(f0)->index != (DdHalfWord) yindex) {		
-				/* stays  如果 T 和 E 分支都不依赖于 y，则该节点仍然属于 x 层*/
+				/* stays  如果 T 和 E 分支都不依赖于 y，则该节点仍然属于 x 层  这里要注意是左右子树都都都依赖于y层*/
 				newxkeys++;
 				*previousP = f;
 				previousP = &(f->next);
 				} else {						// 否则，x层节点和y层节点有依赖关系，x层节点属于 y 层
 				f->index = yindex;
-				f->next = g;					// 加入到 g 链表（后进先出）只有 f 本身的 T 分支 f1 或 E 分支 f0 依赖 y，才会把 f 放入 g 并改成 yindex
+				f->next = g;					//  头插法，加入链表 g（后进先出）只有 f 本身的 T 分支 f1 或 E 分支 f0 依赖 y，才会把 f 放入 g 并改成 yindex
 				g = f;							//但 f1 或 f0 本身可能并不在 g 里，它们的 index 可能还是 x（原始 x 变量）
 				}
-				f = next;
+				f = next;						// 开始就将xlist里面下一个节点存到next里面，以便后续移动到下一个节点
 			} /* while there are elements in the collision chain 当该变量在冲突链中*/
 			*previousP = sentinel;
 	    } /* for each slot of the x subtable for循环遍历 x 子表格的每个插槽——也就是该层里面所有存在的节点*/
@@ -954,20 +954,20 @@ cuddSwapInPlace(
 		f01 = f00 = f0;
 	    }
 	    if (comple) {
-		f01 = Cudd_Not(f01);				//这里f01not后变成什么？f10还是f11?与下面判断f11==f01有什么联系
+		f01 = Cudd_Not(f01);				
 		f00 = Cudd_Not(f00);
 	    }
 	    /* Decrease ref count of f1. */
 	    cuddSatDec(f1->ref);
 	    /* Create the new T child. */
-	    if (f11 == f01) {					//这个判断的目的是什么
+	    if (f11 == f01) {					
 		newf1 = f11;						//说明 T 分支和 E 分支相同，那就不需要创建新的 BDD 节点，直接复用 f11
 		cuddSatInc(newf1->ref);
 	    } else {
 		/* Check xlist for triple (xindex,f11,f01). */
-		posn = ddHash(f11, f01, xshift);
+		posn = ddHash(f11, f01, xshift);	//posn是x层唯一子表的哈希槽位置
 		/* For each element newf1 in collision list xlist[posn]. */
-		previousP = &(xlist[posn]);
+		previousP = &(xlist[posn]);			//previousP是指向该哈希槽冲突链的地址
 		newf1 = *previousP;
 		while (f11 < cuddT(newf1)) {
 		    previousP = &(newf1->next);
@@ -983,7 +983,7 @@ cuddSwapInPlace(
 		    newf1 = cuddDynamicAllocNode(table);
 		    if (newf1 == NULL)
 			goto cuddSwapOutOfMem;
-		    newf1->index = xindex; newf1->ref = 1;		//这里为什么还是xindex不是index，之前放在G链表的时候不是已经设置为yindex了吗？
+		    newf1->index = xindex; newf1->ref = 1;
 		    cuddT(newf1) = f11;
 		    cuddE(newf1) = f01;
 		    /* Insert newf1 in the collision list xlist[posn];
@@ -1697,10 +1697,10 @@ ddSiftingDown(
 
     moves = NULL;
     /* Initialize R */
-    xindex = table->invperm[x];
+    xindex = table->invperm[x];				//输入层级返回索引
     limitSize = size = (int) (table->keys - table->isolated);
     R = 0;
-    for (y = xHigh; y > x; y--) {
+    for (y = xHigh; y > x; y--) {			//遍历 xHigh 到 x 之间的变量
 	yindex = table->invperm[y];
 	if (cuddTestInteract(table,xindex,yindex)) {
 	    isolated = table->vars[yindex]->ref == 1;
@@ -1708,7 +1708,7 @@ ddSiftingDown(
 	}
     }
 
-    y = cuddNextHigh(table,x);
+    y = cuddNextHigh(table,x);			// 取 x 下面的变量 y
     while (y <= xHigh && size - R < limitSize) {
 #ifdef DD_DEBUG
 	checkR = 0;
@@ -1721,25 +1721,25 @@ ddSiftingDown(
 	}
 	assert(R == checkR);
 #endif
-	/* Update upper bound on node decrease. */
-	yindex = table->invperm[y];
-	if (cuddTestInteract(table,xindex,yindex)) {
-	    isolated = table->vars[yindex]->ref == 1;
-	    R -= (int) table->subtables[y].keys - isolated;
-	}
-	size = cuddSwapInPlace(table,x,y);
-	if (size == 0) goto ddSiftingDownOutOfMem;
-	move = (Move *) cuddDynamicAllocNode(table);
-	if (move == NULL) goto ddSiftingDownOutOfMem;
-	move->x = x;
-	move->y = y;
-	move->size = size;
-	move->next = moves;
-	moves = move;
-	if ((double) size > (double) limitSize * table->maxGrowth) break;
-	if (size < limitSize) limitSize = size;
-	x = y;
-	y = cuddNextHigh(table,x);
+		/* Update upper bound on node decrease. */
+		yindex = table->invperm[y];
+		if (cuddTestInteract(table,xindex,yindex)) {
+			isolated = table->vars[yindex]->ref == 1;
+			R -= (int) table->subtables[y].keys - isolated;
+		}
+		size = cuddSwapInPlace(table,x,y);		//相邻变量交换核心算法，返回节点数目
+		if (size == 0) goto ddSiftingDownOutOfMem;
+		move = (Move *) cuddDynamicAllocNode(table);
+		if (move == NULL) goto ddSiftingDownOutOfMem;
+		move->x = x;		//记录本次交换数据
+		move->y = y;
+		move->size = size;
+		move->next = moves;//将 move 加入 moves 链表
+		moves = move;
+		if ((double) size > (double) limitSize * table->maxGrowth) break;
+		if (size < limitSize) limitSize = size;
+		x = y;				//将x移到y,开始下一次移动
+		y = cuddNextHigh(table,x);
     }
     return(moves);
 

@@ -86,8 +86,8 @@ extern "C" {
 /* The following types implement a very simple data structure for a boolean
 ** network. The intent is to be able to read a minimal subset of the blif
 ** format in a data structure from which it's easy to build DDs for the
-** circuit.
-*/
+** circuit.以下类型用于实现一个非常简单的数据结构来表示布尔网络。
+目的是能够读取 BLIF 格式的一个最小子集，并将其存储在一个数据结构中，便于为电路构建决策图（DD）。*/
 
 /**
  ** @brief Type to store a line of the truth table of a node.
@@ -101,11 +101,11 @@ typedef struct BnetTabline {
 } BnetTabline;
 
 /**
- **  @brief Node of the boolean network.
+ **  @brief Node of the boolean network.        BnetNode 结构体：布尔网络中的节点
  **
- ** @details There is one node in the network for each primary input
+ ** @details There is one node in the network for each primary input     在网络中，每个 主输入（primary input） 或 .names 指令定义的逻辑门都会对应一个 BnetNode 结构体。
  ** and for each .names directive. This structure has a field to point
- ** to the DD of the node function. The function may be either in
+ ** to the DD of the node function. The function may be either in       该结构体包含一个字段 指向该节点的决策图（DD）。
  ** terms of primary inputs, or it may be in terms of the local
  ** inputs. The latter implies that each node has a variable index
  ** associated to it at some point in time. The field "var" stores
@@ -116,37 +116,37 @@ typedef struct BnetTabline {
 typedef struct BnetNode {
     char *name;		/**< name of the output signal */
     int type;		/**< input, internal, constant, ... */
-    int ninp;		/**< number of inputs to the node */
-    int nfo;		/**< number of fanout nodes for this node */
-    char **inputs;	/**< input names */
-    BnetTabline *f;	/**< truth table for this node */
+    int ninp;		/**< number of inputs to the node                   该节点的 输入数*/
+    int nfo;		/**< number of fanout nodes for this node           该节点的 输出节点数*/
+    char **inputs;	/**< input names                                    输入信号的名称*/
+    BnetTabline *f;	/**< truth table for this node                      该节点的 真值表（以 BnetTabline 形式存储）*/
     int polarity;	/**< f is the onset (0) or the offset (1) */
     int active;		/**< node has variable associated to it (1) or not (0) */
-    int var;		/**< %DD variable index associated to this node */
+    int var;		/**< %DD variable index associated to this node     该节点对应的 BDD 变量索引*/
     DdNode *dd;		/**< decision diagram for the function of this node */
     int exdc_flag;	/**< whether an exdc node or not */
     struct BnetNode *exdc; /**< pointer to exdc of dd node */
     int count;		/**< auxiliary field for %DD dropping */
-    int level;		/**< maximum distance from the inputs */
+    int level;		/**< maximum distance from the inputs               该节点 到输入端的最大距离（用于排序）*/
     int visited;	/**< flag for search */
-    struct BnetNode *next; /**< pointer to implement the linked list of nodes */
+    struct BnetNode *next; /**< pointer to implement the linked list of nodes   指向 下一个 BnetNode，构成 链表*/
 } BnetNode;
 
 /**
- ** @brief Very simple boolean network data structure.
+ ** @brief Very simple boolean network data structure.  BnetNetwork 结构体：布尔网络的整体数据结构
  */
 typedef struct BnetNetwork {
-    char *name;		/**< network name: from the .model directive */
-    int npis;		/**< number of primary inputs */
-    int ninputs;	/**< number of inputs */
-    char **inputs;	/**< primary input names: from the .inputs directive */
-    int npos;		/**< number of primary outputs */
-    int noutputs;	/**< number of outputs */
-    char **outputs;	/**< primary output names: from the .outputs directive */
-    int nlatches;	/**< number of latches */
-    char ***latches;	/**< next state names: from the .latch directives */
-    BnetNode *nodes;	/**< linked list of the nodes */
-    st_table *hash;	/**< symbol table to access nodes by name */
+    char *name;		/**< network name: from the .model directive            网络名称（来自 .model 指令）*/
+    int npis;		/**< number of primary inputs                           主输入数（来自 .inputs 指令）*/
+    int ninputs;	/**< number of inputs                                   输入数*/
+    char **inputs;	/**< primary input names: from the .inputs directive    主输入名称*/
+    int npos;		/**< number of primary outputs                          主输出数*/
+    int noutputs;	/**< number of outputs                                  输出数*/
+    char **outputs;	/**< primary output names: from the .outputs directive  主输出名称*/
+    int nlatches;	/**< number of latches                                  触发器（latches）数量*/
+    char ***latches;	/**< next state names: from the .latch directives   触发器名称（来自 .latch 指令）*/
+    BnetNode *nodes;	/**< linked list of the nodes                       布尔网络中的节点链表*/
+    st_table *hash;	/**< symbol table to access nodes by name               符号表（用于按名称查找 BnetNode）*/
     char *slope;	/**< wire_load_slope */
 } BnetNetwork;
 

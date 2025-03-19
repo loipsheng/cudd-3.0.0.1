@@ -215,7 +215,7 @@ Support private to f: : 4 nodes 1 leaves 32 minterms
 Support private to g: : 1 nodes 1 leaves 256 minterms
 --------  1
 
-Average distance: 8280.57
+Average distance: 8203.83
 Number of variables =      8	Number of slots     =   2304
 Number of keys      =    999	Number of min dead  =   9216
 walsh1: 16 nodes 2 leaves 256 minterms
@@ -349,12 +349,12 @@ Peak number of live nodes: 119
 Number of BDD variables: 9
 Number of ZDD variables: 0
 Number of cache entries: 2048
-Number of cache look-ups: 2556
-Number of cache hits: 726
-Number of cache insertions: 1997
-Number of cache collisions: 755
-Number of cache deletions: 1238
-Cache used slots = 60.64% (expected 62.28%)
+Number of cache look-ups: 2550
+Number of cache hits: 729
+Number of cache insertions: 1989
+Number of cache collisions: 732
+Number of cache deletions: 1254
+Cache used slots = 61.38% (expected 62.14%)
 Soft limit for cache size: 13312
 Number of buckets in unique table: 2560
 Used buckets in unique table: 0.51% (expected 0.51%)
@@ -377,13 +377,13 @@ System time    0.0 seconds
 
 Average resident text size       =     0K
 Average resident data+stack size =     0K
-Maximum resident size            =  5000K
+Maximum resident size            =  4980K
 
 Virtual memory limit             = unlimited (unlimited)
 Major page faults = 0
-Minor page faults = 662
+Minor page faults = 659
 Swaps = 0
 Input blocks = 0
 Output blocks = 16
 Context switch (voluntary) = 0
-Context switch (involuntary) = 0
+Context switch (involuntary) = 1

@@ -3,7 +3,7 @@
 
   @ingroup nanotrav
 
-  @brief Simple-minded package to do traversal.
+  @brief Simple-minded package to do traversal.       简单易用的遍历软件包。
 
   @author Fabio Somenzi
 

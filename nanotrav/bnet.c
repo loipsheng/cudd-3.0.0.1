@@ -105,7 +105,7 @@ static int bnetDfsOrder (DdManager *dd, BnetNetwork *net, BnetNode *node);
 
 
 /**
-  @brief Reads boolean network from blif file.
+  @brief Reads boolean network from blif file.从 blif 文件读取布尔网络。
 
   @details A very restricted subset of blif is supported. Specifically:
   <ul>
@@ -127,7 +127,7 @@ static int bnetDfsOrder (DdManager *dd, BnetNetwork *net, BnetNode *node);
   </ul>
   Caveat emptor: There may be other limitations as well. One should
   check the syntax of the blif file with some other tool before relying
-  on this parser.
+  on this parser. 	注意事项： 可能还有其他限制。在依赖该解析器之前，应使用其他工具检查 blif 文件的语法。
 
   @return a pointer to the network if successful; NULL otherwise.
   
@@ -610,7 +610,7 @@ Bnet_FreeNetwork(
 
 
 /**
-  @brief Builds the %BDD for the function of a node.
+  @brief Builds the %BDD for the function of a node.为一个节点的函数构建 %BDD。
 
   @details Builds the %BDD for the function of a node and stores a
   pointer to it in the dd field of the node itself. The reference count

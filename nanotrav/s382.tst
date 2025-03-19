@@ -612,9 +612,9 @@ Reached[150]: 95 nodes 1 leaves 8865 minterms
 8865
 depth = 150
 R: 95 nodes 1 leaves 8865 minterms
-Building transition relation. Time = 0.04 sec
+Building transition relation. Time = 0.03 sec
 Transition relation: 21 parts 21 latches 229 nodes
-Computing SCCs. Time = 0.04 sec
+Computing SCCs. Time = 0.03 sec
 S0: 22 nodes 1 leaves 1 minterms
 From[1]: 40 nodes 1 leaves 5 minterms
 Reached[1]: 56 nodes 1 leaves 6 minterms
@@ -3210,42 +3210,42 @@ Peak number of live nodes: 3927
 Number of BDD variables: 87
 Number of ZDD variables: 0
 Number of cache entries: 131072
-Number of cache look-ups: 1257261
-Number of cache hits: 372308
-Number of cache insertions: 915506
-Number of cache collisions: 454124
-Number of cache deletions: 353101
-Cache used slots = 94.88% (expected 94.82%)
+Number of cache look-ups: 1262748
+Number of cache hits: 371946
+Number of cache insertions: 921433
+Number of cache collisions: 470213
+Number of cache deletions: 343228
+Cache used slots = 94.47% (expected 94.49%)
 Soft limit for cache size: 332800
 Number of buckets in unique table: 83200
-Used buckets in unique table: 64.34% (expected 64.12%)
+Used buckets in unique table: 64.41% (expected 64.12%)
 Number of BDD and ADD nodes: 129633
 Number of ZDD nodes: 0
 Number of dead BDD and ADD nodes: 129368
 Number of dead ZDD nodes: 0
 Total number of nodes allocated: 1105734
-Total number of nodes reclaimed: 687458
+Total number of nodes reclaimed: 687253
 Garbage collections so far: 10
-Time for garbage collection: 0.03 sec
+Time for garbage collection: 0.00 sec
 Reorderings so far: 0
 Time for reordering: 0.00 sec
 Final size: 168
-total time = 0.47 sec
+total time = 0.39 sec
 Runtime Statistics
 ------------------
 Machine name: ubuntuBDD
-User time      0.2 seconds
+User time      0.1 seconds
 System time    0.3 seconds
 
 Average resident text size       =     0K
 Average resident data+stack size =     0K
-Maximum resident size            = 13724K
+Maximum resident size            = 13908K
 
 Virtual memory limit             = unlimited (unlimited)
 Major page faults = 0
-Minor page faults = 3684
+Minor page faults = 3692
 Swaps = 0
 Input blocks = 0
 Output blocks = 248
 Context switch (voluntary) = 0
-Context switch (involuntary) = 2
+Context switch (involuntary) = 1

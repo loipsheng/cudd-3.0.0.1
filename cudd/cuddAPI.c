@@ -3402,7 +3402,7 @@ Cudd_ReadPeakLiveNodeCount(
 
 
 /**
-  @brief Reports the number of nodes in BDDs and ADDs.
+  @brief Reports the number of nodes in BDDs and ADDs. 报告 BDD 和 ADD 中的节点数。
 
   @details This number does not include the isolated projection
   functions and the unused constants. These nodes that are not counted

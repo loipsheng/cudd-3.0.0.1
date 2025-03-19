@@ -33,6 +33,7 @@ int main() {
 
     // 打印表达式的 BDD 节点数量
     printf("Number of nodes in f: %d\n", Cudd_DagSize(f));
+    //   (void) printf("Final size: %ld\n", Cudd_ReadNodeCount(*f));
 
     // 生成 DOT 文件
     FILE *dotFile = fopen("bdd2.dot", "w");

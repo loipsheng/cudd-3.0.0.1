@@ -423,7 +423,7 @@ Cudd_PrintSummary(
   
 
 /**
-  @brief Counts the number of nodes in a %DD.
+  @brief Counts the number of nodes in a %DD.计算 %DD 中的节点数。
 
   @return the number of nodes in the graph rooted at node.
 

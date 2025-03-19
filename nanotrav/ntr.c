@@ -109,12 +109,12 @@ static void ntrDecreaseRef(void * e, void * arg);
 
 
 /**
-  @brief Builds DDs for a network outputs and next state functions.
+  @brief Builds DDs for a network outputs and next state functions.		为网络输出和下一状态函数建立 DD。
 
   @details The method is really brain-dead, but it is very simple.
   Some inputs to the network may be shared with another network whose
   DDs have already been built.  In this case we want to share the DDs
-  as well.
+  as well.这个方法确实很烧脑，但却非常简单。 网络的某些输入可能与另一个网络共享，而后者的 DDs 已经建立。 在这种情况下，我们也要共享 DD。
 
   @return 1 in case of success; 0 otherwise.
 

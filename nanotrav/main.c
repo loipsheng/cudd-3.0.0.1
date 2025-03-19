@@ -114,20 +114,20 @@ main(
   char ** argv)
 {
     NtrOptions	*option;	/* options */
-    FILE	*fp1;		/* first network file pointer */
+    FILE	*fp1;		/* first network file pointer 				第一个网络的文件指针*/
     BnetNetwork	*net1 = NULL;	/* first network */
-    FILE	*fp2;		/* second network file pointer */
+    FILE	*fp2;		/* second network file pointer 				第二个网络的文件指针*/
     BnetNetwork	*net2 = NULL;	/* second network */
     DdManager	*dd;		/* pointer to DD manager */
-    int		exitval;	/* return value of Cudd_CheckZeroRef */
-    int		ok;		/* overall return value from main() */
-    int		result;		/* stores the return value of functions */
-    BnetNode	*node;		/* auxiliary pointer to network node */
-    int		i;		/* loop index */
+    int		exitval;	/* return value of Cudd_CheckZeroRef 		Cudd_CheckZeroRef 的返回值*/
+    int		ok;		/* overall return value from main()				main() 的整体返回值 */
+    int		result;		/* stores the return value of functions 	存储函数的返回值*/
+    BnetNode	*node;		/* auxiliary pointer to network node 	指向网络节点的辅助指针*/
+    int		i;		/* loop index 									循环索引*/
     int		j;		/* loop index */
     double	*signatures;	/* array of signatures */
     int		pr;		/* verbosity level */
-    int		reencoded;	/* linear transformations attempted */
+    int		reencoded;	/* linear transformations attempted			线性变换尝试的次数 */
 
     /* Initialize. */
 #if defined(_WIN32) && defined(_TWO_DIGIT_EXPONENT)
@@ -135,17 +135,17 @@ main(
 #endif
     option = mainInit();			// 初始化options
     ntrReadOptions(argc,argv,option);
-    pr = option->verb;
+    pr = option->verb;				//获取 verbosity（详细程度），决定后续的日志打印级别
     reencoded = option->reordering == CUDD_REORDER_LINEAR ||
 		option->reordering == CUDD_REORDER_LINEAR_CONVERGE ||
 		option->autoMethod == CUDD_REORDER_LINEAR ||
 		option->autoMethod == CUDD_REORDER_LINEAR_CONVERGE;
     /* Currently traversal requires global BDDs. Override whatever
     ** was specified for locGlob.
-    */
+    目前遍历需要全局 BDD。覆盖为locGlob 指定的任何内容。*/
     if (option->traverse == TRUE || option->envelope == TRUE ||
 	option->scc == TRUE) {
-	option->locGlob = BNET_GLOBAL_DD;
+	option->locGlob = BNET_GLOBAL_DD;			//强制使用全局 BDD
     }
 
     /* Read the first network... */
@@ -156,7 +156,7 @@ main(
 	(void) fprintf(stderr,"Syntax error in %s.\n",option->file1);
 	exit(2);
     }
-    /* ... and optionally echo it to the standard output. */
+    /* ... and optionally echo it to the standard output. 并可选择将其回传至标准输出。*/
     if (pr > 2) {
 	Bnet_PrintNetwork(net1);
     }
@@ -184,7 +184,7 @@ main(
     dd = startCudd(option,net1->ninputs);
     if (dd == NULL) { exit(2); }
 
-    /* Build the BDDs for the nodes of the first network. */
+    /* Build the BDDs for the nodes of the first network. 为第一个网络之前在readnetwork生成的节点运算建立BDD!!!!!!。*/
     result = Ntr_buildDDs(net1,dd,option,NULL);
     if (result == 0) { exit(2); }
 
@@ -214,45 +214,45 @@ main(
 	if (result == 0) exit(2);
     }
 
-    /* Perform final reordering */
+    /* Perform final reordering 		执行变量重排序！！！*/
     if (option->zddtest == FALSE) {
-	result = reorder(net1,dd,option);
-	if (result == 0) exit(2);
-
-	/* Print final order. */
-	if ((option->reordering != CUDD_REORDER_NONE || option->gaOnOff) &&
-	    option->locGlob != BNET_LOCAL_DD) {
-	    (void) printf("New order\n");
-	    result = Bnet_PrintOrder(net1,dd);
-	    if (result == 0) exit(2);
-	}
-
-	/* Print the re-encoded inputs. */
-	if (pr >= 1 && reencoded == 1) {
-	    for (i = 0; i < net1->npis; i++) {
-		if (!st_lookup(net1->hash,net1->inputs[i],(void **)&node)) {
-		    exit(2);
-		}
-		(void) fprintf(stdout,"%s ",node->name);
-		Cudd_PrintDebug(dd,node->dd,Cudd_ReadSize(dd),pr);
-	    }
-	    for (i = 0; i < net1->nlatches; i++) {
-		if (!st_lookup(net1->hash,net1->latches[i][1],(void **)&node)) {
-		    exit(2);
-		}
-		(void) fprintf(stdout,"%s ",node->name);
-		Cudd_PrintDebug(dd,node->dd,Cudd_ReadSize(dd),pr);
-	    }
-	    if (pr >= 3) {
-		result = Cudd_PrintLinear(dd);
+		result = reorder(net1,dd,option);
 		if (result == 0) exit(2);
-	    }
-	}
+
+		/* Print final order. 			打印最终顺序*/
+		if ((option->reordering != CUDD_REORDER_NONE || option->gaOnOff) &&
+			option->locGlob != BNET_LOCAL_DD) {
+			(void) printf("New order\n");
+			result = Bnet_PrintOrder(net1,dd);
+			if (result == 0) exit(2);
+		}
+
+		/* Print the re-encoded inputs. 打印重新编码的输入。*/
+		if (pr >= 1 && reencoded == 1) {
+			for (i = 0; i < net1->npis; i++) {
+				if (!st_lookup(net1->hash,net1->inputs[i],(void **)&node)) {
+					exit(2);
+				}
+				(void) fprintf(stdout,"%s ",node->name);
+				Cudd_PrintDebug(dd,node->dd,Cudd_ReadSize(dd),pr);
+			}//处理重新编码的输入
+			for (i = 0; i < net1->nlatches; i++) {
+				if (!st_lookup(net1->hash,net1->latches[i][1],(void **)&node)) {
+					exit(2);
+				}
+				(void) fprintf(stdout,"%s ",node->name);
+				Cudd_PrintDebug(dd,node->dd,Cudd_ReadSize(dd),pr);
+			}// 处理锁存器（Latches）
+			if (pr >= 3) {
+				result = Cudd_PrintLinear(dd);
+				if (result == 0) exit(2);
+			}//线性重编码信息
+		}
     }
 
-    /* Verify (combinational) equivalence. */
+    /* Verify (combinational) equivalence. 				等价性验证*/
     if (option->verify == TRUE) {
-	result = Ntr_VerifyEquivalence(dd,net1,net2,option);
+	result = Ntr_VerifyEquivalence(dd,net1,net2,option);	//验证net1 net2逻辑上是否等价
 	if (result == 0) {
 	    (void) printf("Verification abnormally terminated\n");
 	    exit(2);
@@ -264,14 +264,14 @@ main(
     }
 
     /* Traverse if requested and if the circuit is sequential. */
-    result = Ntr_Trav(dd,net1,option);
+    result = Ntr_Trav(dd,net1,option);			//这个函数用于遍历 net1，检查其状态转换关系（适用于时序电路）
     if (result == 0) exit(2);
 
-    /* Traverse with trasitive closure. */
-    result = Ntr_ClosureTrav(dd,net1,option);
+    /* Traverse with trasitive closure. 		带有三性闭合的遍历*/
+    result = Ntr_ClosureTrav(dd,net1,option);	//带有传递闭包（transitive closure）的遍历方法，通常用于计算可达状态集合
     if (result == 0) exit(2);
 
-    /* Compute outer envelope if requested and if the circuit is sequential. */
+    /* Compute outer envelope if requested and if the circuit is sequential. 如果有要求且电路是连续的，则计算外包络。*/
     if (option->envelope == TRUE && net1->nlatches > 0) {
 	NtrPartTR *T;
 	T = Ntr_buildTR(dd,net1,option,option->image);
@@ -280,76 +280,76 @@ main(
 	Ntr_freeTR(dd,T);
     }
 
-    /* Compute SCCs if requested and if the circuit is sequential. */
+    /* Compute SCCs if requested and if the circuit is sequential. 计算 net1 的强连通分量，在时序逻辑分析中用于检测反馈环路*/
     result = Ntr_SCC(dd,net1,option);
     if (result == 0) exit(2);
 
-    /* Test Constrain Decomposition. */
-    if (option->partition == TRUE && net1->nlatches > 0) {
-	NtrPartTR *T;
-	DdNode *product;
-	DdNode **decomp;
-	int sharingSize;
-	T = Ntr_buildTR(dd,net1,option,NTR_IMAGE_MONO);
-	decomp = Cudd_bddConstrainDecomp(dd,T->part[0]);
-	if (decomp == NULL) exit(2);
-	sharingSize = Cudd_SharingSize(decomp, Cudd_ReadSize(dd));
-	(void) fprintf(stdout, "Decomposition Size: %d components %d nodes\n",
-		       Cudd_ReadSize(dd), sharingSize);
-	product = Cudd_ReadOne(dd);
-	Cudd_Ref(product);
-	for (i = 0; i < Cudd_ReadSize(dd); i++) {
-	    DdNode *intermediate = Cudd_bddAnd(dd, product, decomp[i]);
-	    if (intermediate == NULL) {
-		exit(2);
-	    }
-	    Cudd_Ref(intermediate);
-	    Cudd_IterDerefBdd(dd, product);
-	    product = intermediate;
-	}
-	if (product != T->part[0])
-	    exit(2);
-	Cudd_IterDerefBdd(dd, product);
-	for (i = 0; i < Cudd_ReadSize(dd); i++) {
-	    Cudd_IterDerefBdd(dd, decomp[i]);
-	}
-	FREE(decomp);
-	Ntr_freeTR(dd,T);
+    /* Test Constrain Decomposition. 			测试约束分解*/
+    if (option->partition == TRUE && net1->nlatches > 0) {//网络 net1 是一个时序电路（包含寄存器或触发器），否则分解无意义
+		NtrPartTR *T;
+		DdNode *product;
+		DdNode **decomp;
+		int sharingSize;
+		T = Ntr_buildTR(dd,net1,option,NTR_IMAGE_MONO);		//构建状态转移关系
+		decomp = Cudd_bddConstrainDecomp(dd,T->part[0]);	//BDD约束分解函数
+		if (decomp == NULL) exit(2);
+		sharingSize = Cudd_SharingSize(decomp, Cudd_ReadSize(dd));	//计算 decomp 数组的共享节点数
+		(void) fprintf(stdout, "Decomposition Size: %d components %d nodes\n",
+				Cudd_ReadSize(dd), sharingSize);
+		product = Cudd_ReadOne(dd);
+		Cudd_Ref(product);
+		for (i = 0; i < Cudd_ReadSize(dd); i++) {
+			DdNode *intermediate = Cudd_bddAnd(dd, product, decomp[i]);
+			if (intermediate == NULL) {
+			exit(2);
+			}
+			Cudd_Ref(intermediate);
+			Cudd_IterDerefBdd(dd, product);
+			product = intermediate;
+		}
+		if (product != T->part[0])
+			exit(2);
+		Cudd_IterDerefBdd(dd, product);
+		for (i = 0; i < Cudd_ReadSize(dd); i++) {
+			Cudd_IterDerefBdd(dd, decomp[i]);
+		}
+		FREE(decomp);
+		Ntr_freeTR(dd,T);
     }
 
-    /* Test char-to-vect conversion. */
+    /* Test char-to-vect conversion. 			字符转换为向量测试*/
     result = Ntr_TestCharToVect(dd,net1,option);
     if (result == 0) exit(2);
 
-    /* Test extraction of two-literal clauses. */
+    /* Test extraction of two-literal clauses.	提取两文字子句 */
     result = Ntr_TestTwoLiteralClauses(dd,net1,option);
     if (result == 0) exit(2);
 
-    /* Test BDD minimization functions. */
+    /* Test BDD minimization functions. 		BDD 最小化*/
     result = Ntr_TestMinimization(dd,net1,net2,option);
     if (result == 0) exit(2);
 
-    /* Test density-related functions. */
+    /* Test density-related functions. 		 	计算BDD密度*/
     result = Ntr_TestDensity(dd,net1,option);
     if (result == 0) exit(2);
 
-    /* Test decomposition functions. */
+    /* Test decomposition functions. 			BDD 分解*/
     result = Ntr_TestDecomp(dd,net1,option);
     if (result == 0) exit(2);
 
-    /* Test cofactor estimation functions. */
+    /* Test cofactor estimation functions. 		余因子估算*/
     result = Ntr_TestCofactorEstimate(dd,net1,option);
     if (result == 0) exit(2);
 
-    /* Test BDD clipping functions. */
+    /* Test BDD clipping functions. 			BDD 剪枝*/
     result = Ntr_TestClipping(dd,net1,net2,option);
     if (result == 0) exit(2);
 
-    /* Test BDD equivalence and containment under DC functions. */
+    /* Test BDD equivalence and containment under DC functions. 在分解约束后，BDD 等价性 & 包含性检查*/
     result = Ntr_TestEquivAndContain(dd,net1,net2,option);
     if (result == 0) exit(2);
 
-    /* Test BDD Cudd_bddClosestCube. */
+    /* Test BDD Cudd_bddClosestCube. 			BDD 计算最近的立方体*/
     result = Ntr_TestClosestCube(dd,net1,option);
     if (result == 0) exit(2);
 
@@ -399,7 +399,7 @@ main(
 	}
     }
 
-    /* Dump BDDs if so requested. */
+    /* Dump BDDs if so requested. 			BDD 转储*/
     if (option->bdddump && option->second == FALSE &&
 	option->density == FALSE && option->decomp == FALSE &&
 	option->cofest == FALSE && option->clip < 0.0 &&
@@ -468,7 +468,7 @@ main(
 
     /* Check reference counts: At this point we should have dereferenced
     ** everything we had, except in the case of re-encoding.
-    */
+    检查引用计数： 此时，除了重新编码的情况外，我们应该已经取消了所有引用。*/
     if (reencoded == CUDD_FALSE) {
         exitval = Cudd_CheckZeroRef(dd);
         ok = exitval != 0;  /* ok == 0 means O.K. */
@@ -507,7 +507,7 @@ main(
 
 
 /**
-  @brief Allocates the option structure and initializes it.
+  @brief Allocates the option structure and initializes it.分配选项结构并将其初始化。
 
   @sideeffect none
 
@@ -798,9 +798,9 @@ ntrReadOptions(
 	    option->slots = (int) atoi(argv[i]);
 	} else if (STRING_EQUAL(argv[i],"-ordering")) {
 	    i++;
-	    if (STRING_EQUAL(argv[i],"dfs")) {
+	    if (STRING_EQUAL(argv[i],"dfs")) {					//基于深度优先搜索的变量顺序
 		option->ordering = PI_PS_DFS;
-	    } else if (STRING_EQUAL(argv[i],"hw")) {
+	    } else if (STRING_EQUAL(argv[i],"hw")) {			//从文件中读取变量顺序
 		option->ordering = PI_PS_FROM_FILE;
 	    } else {
 		goto usage;
@@ -809,7 +809,7 @@ ntrReadOptions(
 	    i++;
 	    option->ordering = PI_PS_GIVEN;
 	    option->orderPiPs = util_strsav(argv[i]);
-	} else if (STRING_EQUAL(argv[i],"-reordering")) {
+	} else if (STRING_EQUAL(argv[i],"-reordering")) {		//变量重排序的方法
 	    i++;
 	    if (STRING_EQUAL(argv[i],"none")) {
 		option->reordering = CUDD_REORDER_NONE;
@@ -1012,7 +1012,7 @@ ntrReadOptions(
 
     if (option->verb >= 0) {
 	(void) printf("# %s\n", NTR_VERSION);
-	/* echo command line and arguments */
+	/* echo command line and arguments		回传命令行和参数 */
 	(void) printf("#");
 	for (i = 0; i < argc; i++) {
 	    (void) printf(" %s", argv[i]);
@@ -1040,14 +1040,14 @@ usage:	/* convenient goto */
 /**
   @brief Reads the program options from a file.
 
-  @details Opens file. Reads the command line from the otpions file
-  using the read_line func. Scans the line looking for spaces, each
-  space is a searator and demarks a new option.  When a space is
-  found, it is changed to a \0 to terminate that string; then the next
+  @details Opens file. Reads the command line from the otpions file		使用 read_line 函数从 otpions 文件中读取命令行。
+  using the read_line func. Scans the line looking for spaces, each		扫描行中的空格，每个空格都是一个searator，表示一个新的选项。
+  space is a searator and demarks a new option.  When a space is		当发现空格时，它将变为一个（0）来终止该字符串；
+  found, it is changed to a \0 to terminate that string; then the next	然后下一个 slot 值指向下一个非空格字符。
   value of slot points to the next non-space character.  There is a
   limit of 1024 options.  Should produce an error (presently doesn't)
   on overrun of options, but this is very unlikely to happen.
-
+  
   @sideeffect none
 
 */
@@ -1086,7 +1086,7 @@ ntrReadOptionsFile(
 	}
 	line++;
     } while ( *line != '\0');
-
+	//主要功能 是从文件中读取命令行选项，并转换为 argc, argv 形式，以便在后续处理中像命令行参数一样使用
 
     *argv = slot;
     *argc = index;
@@ -1097,7 +1097,7 @@ ntrReadOptionsFile(
 
 
 /**
-  @brief Reads a line from the option file.
+  @brief Reads a line from the option file.		 从选项文件中读取一行。
 
   @sideeffect none
 
@@ -1111,21 +1111,21 @@ readLine(
 
 	// pbuffer指向全局变量buffer,将每一行的数据读取到buffer字符数组中
     pbuffer = buffer;
-
+	
     /* Strip white space from beginning of line. */
 	// 每次读取一个字符,如果读到的是\n字符,则表示读到当前行的末尾
 	// 读到的是EOF,表示文件末尾
 	// 如果读到的是一个字符,则跳出for(;;)循环
     for(;;) {
-	c = getc(fp);
-	if ( c == EOF) return(NULL);
-	if ( c == '\n') {
-	    *pbuffer = '\0';
-	    return(buffer); /* got a blank line */
-	}
-	if ( c != ' ') break;
-    }
-    do {
+		c = getc(fp);
+		if ( c == EOF) return(NULL);
+		if ( c == '\n') {
+			*pbuffer = '\0';
+			return(buffer); /* got a blank line */
+		}
+		if ( c != ' ') break;
+    }//去除行首的空格?
+    do {//读取当前行的内容
 	if ( c == '\\' ) { /* if we have a continuation character.. */
 	    do {	/* scan to end of line */
 		c = getc(fp);
@@ -1235,7 +1235,7 @@ reorder(
         }
 #endif
 
-	/* Print symmetry stats if pertinent */
+	/* Print symmetry stats if pertinent 		如果相关，打印对称性统计信息*/
 	if (dd->tree == NULL &&
 	    (option->reordering == CUDD_REORDER_SYMM_SIFT ||
 	    option->reordering == CUDD_REORDER_SYMM_SIFT_CONV))
@@ -1256,7 +1256,7 @@ reorder(
 
 
 /**
-  @brief Frees the option structure and its appendages.
+  @brief Frees the option structure and its appendages. 释放选项结构及其附属装置。
 
   @sideeffect None
 
@@ -1299,9 +1299,9 @@ startCudd(
     dd = Cudd_Init(0, 0, option->slots, option->cacheSize, option->maxMemory);
     if (dd == NULL) return(NULL);
 
-    Cudd_Srandom(dd, option->seed);
+    Cudd_Srandom(dd, option->seed);					//设置随机种子
     if (option->maxMemHard != 0) {
-	Cudd_SetMaxMemory(dd,option->maxMemHard);
+	Cudd_SetMaxMemory(dd,option->maxMemHard);		//设置 CUDD 管理器的最大内存限制
     }
     Cudd_SetMaxLive(dd,option->maxLive);
     Cudd_SetGroupcheck(dd,option->groupcheck);
@@ -1337,7 +1337,7 @@ startCudd(
 
 
 /**
-  @brief Reads the variable group tree from a file.
+  @brief Reads the variable group tree from a file.	该函数的作用是从文件中读取变量组树（variable group tree）
 
   @return 1 if successful; 0 otherwise.
 
@@ -1362,7 +1362,7 @@ ntrReadTree(
 	return(0);
     }
 
-    root = Mtr_ReadGroups(fp,ddMax(Cudd_ReadSize(dd),nvars));
+    root = Mtr_ReadGroups(fp,ddMax(Cudd_ReadSize(dd),nvars));		//读取文件中的内容并构建一棵树
     if (root == NULL) {
 	return(0);
     }

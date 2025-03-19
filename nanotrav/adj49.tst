@@ -106,27 +106,27 @@ Peak number of live nodes: 3444
 Number of BDD variables: 49
 Number of ZDD variables: 0
 Number of cache entries: 32768
-Number of cache look-ups: 51757
-Number of cache hits: 17170
-Number of cache insertions: 25260
-Number of cache collisions: 6775
-Number of cache deletions: 1738
-Cache used slots = 53.56% (expected 51.16%)
+Number of cache look-ups: 51781
+Number of cache hits: 17191
+Number of cache insertions: 25263
+Number of cache collisions: 6841
+Number of cache deletions: 1733
+Cache used slots = 53.36% (expected 51.16%)
 Soft limit for cache size: 51200
 Number of buckets in unique table: 12800
-Used buckets in unique table: 55.91% (expected 55.54%)
+Used buckets in unique table: 55.87% (expected 55.54%)
 Number of BDD and ADD nodes: 16471
 Number of ZDD nodes: 0
 Number of dead BDD and ADD nodes: 16082
 Number of dead ZDD nodes: 0
 Total number of nodes allocated: 18850
-Total number of nodes reclaimed: 1669
+Total number of nodes reclaimed: 1714
 Garbage collections so far: 1
 Time for garbage collection: 0.00 sec
 Reorderings so far: 1
 Time for reordering: 0.01 sec
 Final size: 338
-total time = 0.02 sec
+total time = 0.01 sec
 Runtime Statistics
 ------------------
 Machine name: ubuntuBDD
@@ -135,11 +135,11 @@ System time    0.0 seconds
 
 Average resident text size       =     0K
 Average resident data+stack size =     0K
-Maximum resident size            =  6688K
+Maximum resident size            =  6820K
 
 Virtual memory limit             = unlimited (unlimited)
 Major page faults = 0
-Minor page faults = 1071
+Minor page faults = 1073
 Swaps = 0
 Input blocks = 0
 Output blocks = 8

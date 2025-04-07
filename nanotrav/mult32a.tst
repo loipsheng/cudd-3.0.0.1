@@ -32,15 +32,15 @@ Building transition relation. Time = 0.02 sec
 BDD reordering with sifting: from 669 to ... 452 nodes in 0 sec
 @@BDD reordering with sifting: from 939 to ... 705 nodes in 0.02 sec
 @@BDD reordering with sifting: from 1443 to ... 847 nodes in 0.01 sec
-@@BDD reordering with sifting: from 1727 to ... 1076 nodes in 0.03 sec
-@@@BDD reordering with sifting: from 2185 to ... 770 nodes in 0.02 sec
-@@@@BDD reordering with sifting: from 1573 to ... 922 nodes in 0.02 sec
-@@@@BDD reordering with sifting: from 1877 to ... 1013 nodes in 0.02 sec
+@@BDD reordering with sifting: from 1727 to ... 1076 nodes in 0.02 sec
+@@@BDD reordering with sifting: from 2185 to ... 770 nodes in 0.01 sec
+@@@@BDD reordering with sifting: from 1573 to ... 922 nodes in 0.03 sec
+@@@@BDD reordering with sifting: from 1877 to ... 1013 nodes in 0.03 sec
 @@@@@BDD reordering with sifting: from 2059 to ... 873 nodes in 0.02 sec
 @@@@@BDD reordering with sifting: from 1779 to ... 975 nodes in 0.03 sec
 @@@@@
 Transition relation: 1 parts 32 latches 196 nodes
-Traversing. Time = 0.19 sec
+Traversing. Time = 0.20 sec
 S0: 33 nodes 1 leaves 1 minterms
 From[1]: 33 nodes 1 leaves 2.14748e+09 minterms
 Reached[1]: 2 nodes 1 leaves 2.14748e+09 minterms
@@ -211,15 +211,15 @@ Peak number of live nodes: 4004
 Number of BDD variables: 97
 Number of ZDD variables: 0
 Number of cache entries: 65536
-Number of cache look-ups: 49877
-Number of cache hits: 20818
-Number of cache insertions: 29320
-Number of cache collisions: 1336
-Number of cache deletions: 21099
-Cache used slots = 17.76% (expected 10.53%)
+Number of cache look-ups: 49880
+Number of cache hits: 20822
+Number of cache insertions: 29319
+Number of cache collisions: 1307
+Number of cache deletions: 21104
+Cache used slots = 17.81% (expected 10.53%)
 Soft limit for cache size: 100352
 Number of buckets in unique table: 25088
-Used buckets in unique table: 12.41% (expected 12.44%)
+Used buckets in unique table: 12.39% (expected 12.44%)
 Number of BDD and ADD nodes: 3614
 Number of ZDD nodes: 0
 Number of dead BDD and ADD nodes: 3267
@@ -240,13 +240,13 @@ System time    0.0 seconds
 
 Average resident text size       =     0K
 Average resident data+stack size =     0K
-Maximum resident size            =  6172K
+Maximum resident size            =  6108K
 
 Virtual memory limit             = unlimited (unlimited)
 Major page faults = 0
-Minor page faults = 1545
+Minor page faults = 1544
 Swaps = 0
-Input blocks = 0
+Input blocks = 8
 Output blocks = 16
-Context switch (voluntary) = 0
-Context switch (involuntary) = 1
+Context switch (voluntary) = 1
+Context switch (involuntary) = 4

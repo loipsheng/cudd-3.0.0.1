@@ -1,0 +1,17 @@
+Use the following commands to compile this application with cudd-3.0.0 builtin.
+
+```shell
+make expretest
+```
+
+Use the following command to clear the files in the expresstest folder except for .c files.
+
+```shell
+make expretest-clean
+```
+
+You can use "graphviz" to translate.dot files to .png-formatted files.
+
+```shell
+sudo apt install graphviz
+

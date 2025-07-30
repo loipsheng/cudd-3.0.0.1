@@ -625,13 +625,13 @@ ntrReadOptions(
 
     if (argc < 2) goto usage;
 
-	// 如果输入的第一个参数是"-f"
+	// 如果输入的第一个参数是"-f",说明要从文件中读取参数
     if (STRING_EQUAL(argv[1],"-f")) {
 	ntrReadOptionsFile(argv[2],&argv,&argc);
     }
 
     for (i = 1; i < argc; i++) {
-	if (argv[i][0] != '-' ) {
+	if (argv[i][0] != '-' ) {		//如果不是以 '-' 开头，说明是文件名
 	    if (option->file1 == NULL) {
 		option->file1 = util_strsav(argv[i]);
 	    } else {

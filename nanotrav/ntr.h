@@ -102,23 +102,23 @@ extern "C" {
    @brief Options for nanotrav.
 */
 typedef	struct	NtrOptions {
-    long	initialTime;	/**< this is here for convenience */
-    int		verify;		/**< read two networks and compare them */
+    long	initialTime;	/**< this is here for convenience         起始时间（为了方便存放）*/
+    int		verify;		/**< read two networks and compare them   是否进行两个网络的对比验证*/
     char	*file1;		/**< first network file name */
     char	*file2;		/**< second network file name */
     int		second;		/**< a second network is given */
-    int		traverse;	/**< do reachability analysis */
-    int		depend;		/**< do latch dependence analysis */
-    int		image;		/**< monolithic, partitioned, or clip */
-    double	imageClip;	/**< clipping depth in image computation */
-    int		approx;		/**< under or over approximation */
-    int		threshold;	/**< approximation threshold */
-    int		from;		/**< method to compute from states */
-    int		groupnsps;	/**< group present state and next state vars */
-    int		closure;	/**< use transitive closure */
+    int		traverse;	/**< do reachability analysis             是否执行可达性分析*/
+    int		depend;		/**< do latch dependence analysis         是否执行触发器依赖分析*/
+    int		image;		/**< monolithic, partitioned, or clip     图像计算类型：单体、划分或剪枝*/
+    double	imageClip;	/**< clipping depth in image computation  图像剪枝的深度*/
+    int		approx;		/**< under or over approximation          是否使用近似计算（过/欠）*/
+    int		threshold;	/**< approximation threshold              近似计算的阈值*/
+    int		from;		/**< method to compute from states           计算 from 状态的方法*/
+    int		groupnsps;	/**< group present state and next state vars 是否合并当前状态与下一状态变量*/
+    int		closure;	/**< use transitive closure                  是否计算传递闭包*/
     double	closureClip;	/**< clipping depth in closure computation */
-    int		envelope;	/**< compute outer envelope */
-    int		scc;		/**< compute strongly connected components */
+    int		envelope;	/**< compute outer envelope               是否计算外包络（outer envelope）*/
+    int		scc;		/**< compute strongly connected components   是否计算强连通分量（SCC）*/
     int		zddtest;	/**< do zdd test */
     int		printcover;	/**< print ISOP covers when testing ZDDs */
     int		maxflow;	/**< compute maximum flow in network */
@@ -189,7 +189,7 @@ typedef struct NtrHeapSlot NtrHeapSlot;
 typedef struct NtrHeap NtrHeap;
 
 /**
-   @brief Data structure for partitioned transition relation.
+   @brief Data structure for partitioned transition relation. 分区转换关系的数据结构。
 */
 typedef struct NtrPartTR {
     int nparts;			/**< number of parts */

@@ -93,7 +93,7 @@ extern "C" {
  ** @brief Type to store a line of the truth table of a node.
  **
  ** @details The entire truth table implemented as a linked list of
- ** objects of this type.
+ ** objects of this type. 整个真值表以该类型对象的链表形式实现。
  */
 typedef struct BnetTabline {
     char *values;		/**< string of 1, 0, and - */

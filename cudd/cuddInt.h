@@ -3,7 +3,7 @@
 
   @ingroup cudd
 
-  @brief Internal data structures of the CUDD package.
+  @brief Internal data structures of the CUDD package.    CUDD 包的内部数据结构!!!
 
   @author Fabio Somenzi
 

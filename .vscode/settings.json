@@ -4,5 +4,7 @@
         "statusBar.debuggingForeground": "#ffffff",
         "minimap.background": "#00000000",
         "scrollbar.shadow": "#00000000"
-    }
+    },
+    "commentTranslate.targetLanguage": "zh-CN",
+    "commentTranslate.hover.enabled": true
 }

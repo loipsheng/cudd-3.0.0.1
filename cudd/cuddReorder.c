@@ -516,7 +516,7 @@ cuddSifting(
 				table->autoDyn = 0; /* prevent further reordering */
 				break;
 			}//自定义终止回调函数触发，停止筛选
-		x = table->perm[var[i].index];			//一层一层的进行sifting筛选；输入索引返回层级；x是第一层慢慢往下循环
+		x = table->perm[var[i].index];			//一层一层的进行sifting筛选；输入索引返回层级；x是第一层慢慢往下循环,perm[] 数组告诉你“变量编号Xi目前排在第几层,X1X2X3每一个都要来sifting
 		//跳过无法筛选的变量
 		if (x < lower || x > upper || table->subtables[x].bindVar == 1)
 			continue;
@@ -819,7 +819,7 @@ cuddSwapInPlace(
 				newxkeys++;
 				*previousP = f;
 				previousP = &(f->next);
-				} else {						// 否则，x层节点和y层节点有依赖关系，x层节点属于 y 层
+				} else {						// 否则，x层节点的左右分支T、E和y层节点有依赖关系，则x层节点属于 y 层
 				f->index = yindex;
 				f->next = g;					//  头插法，加入链表 g（后进先出）只有 f 本身的 T 分支 f1 或 E 分支 f0 依赖 y，才会把 f 放入 g 并改成 yindex
 				g = f;							//但 f1 或 f0 本身可能并不在 g 里，它们的 index 可能还是 x（原始 x 变量）
@@ -1709,7 +1709,7 @@ ddSiftingDown(
     }
 
     y = cuddNextHigh(table,x);			// 取 x 下面的变量 y
-    while (y <= xHigh && size - R < limitSize) {
+    while (y <= xHigh && size - R < limitSize) {//这里while循环，直到 y > xHigh 或者 size - R >= limitSize ，一直调用下面的cuddswapinplace函数交换变量位置
 #ifdef DD_DEBUG
 	checkR = 0;
 	for (z = xHigh; z > x; z--) {

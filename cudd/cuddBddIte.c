@@ -1068,7 +1068,7 @@ cuddBddAndRecur(
 		Cudd_IterDerefBdd(manager, e);
 		return(NULL);
 	    }
-	    r = Cudd_Not(r);
+	    r = Cudd_Not(r);    //在 CUDD 中，布尔补值不是通过增加一个节点来表示，而是通过对指针**加一位补码（LSB = 1）**来表示“取反”;若 t 是补值，则：ITE(x_i, t, e) = ~ ITE(x_i, ~t, ~e)
 	} else {
 	    r = cuddUniqueInter(manager,(int)index,t,e);
 	    if (r == NULL) {

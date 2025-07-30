@@ -85,6 +85,7 @@ check_PROGRAMS = cudd/testcudd$(EXEEXT) cudd/testextra$(EXEEXT) \
 	st/testst$(EXEEXT) mtr/testmtr$(EXEEXT) \
 	dddmp/testdddmp$(EXEEXT) cplusplus/testobj$(EXEEXT) \
 	cplusplus/testmulti$(EXEEXT) nanotrav/nanotrav$(EXEEXT) apps/main$(EXEEXT) \
+	expretest/expression_reorder$(EXEEXT)
 
 DIST_COMMON = $(top_srcdir)/cudd/Included.am \
 	$(top_srcdir)/util/Included.am $(top_srcdir)/st/Included.am \
@@ -373,7 +374,7 @@ mtr_testmtr_DEPENDENCIES = cudd/libcudd.la
 # todo
 apps_OBJECTS = \
 	apps/main.$(OBJEXT)
-
+expretest_expression_reorder_OBJECTS = expretest/expression_reorder.$(OBJEXT)
 #  nanotrav的依赖
 am_nanotrav_nanotrav_OBJECTS =  \
 	nanotrav/nanotrav_nanotrav-bnet.$(OBJEXT) \
@@ -390,7 +391,7 @@ nanotrav_nanotrav_OBJECTS = $(am_nanotrav_nanotrav_OBJECTS)
 # 链接库:
 apps_DEPENDENCIES = dddmp/libdddmp.la \
 	cudd/libcudd.la
-
+expretest_expression_reorder_DEPENDENCIES = cudd/libcudd.la dddmp/libdddmp.la
 nanotrav_nanotrav_DEPENDENCIES = dddmp/libdddmp.la \
 	cudd/libcudd.la
 #nanotrav_nanotrav_DEPENDENCIES = cudd/libcudd.la
@@ -454,7 +455,7 @@ SOURCES = $(cplusplus_libobj_la_SOURCES) $(cudd_libcudd_la_SOURCES) \
 	$(cplusplus_testobj_SOURCES) $(cudd_testcudd_SOURCES) \
 	$(cudd_testextra_SOURCES) $(dddmp_testdddmp_SOURCES) \
 	$(mtr_testmtr_SOURCES) $(nanotrav_nanotrav_SOURCES) \
-	$(st_testst_SOURCES) $(apps_SOURCES)
+	$(st_testst_SOURCES) $(apps_SOURCES) $(expretest_expression_reorder_SOURCES)
 DIST_SOURCES = $(am__cplusplus_libobj_la_SOURCES_DIST) \
 	$(am__cudd_libcudd_la_SOURCES_DIST) \
 	$(am__dddmp_libdddmp_la_SOURCES_DIST) \
@@ -462,7 +463,7 @@ DIST_SOURCES = $(am__cplusplus_libobj_la_SOURCES_DIST) \
 	$(cudd_testcudd_SOURCES) $(cudd_testextra_SOURCES) \
 	$(dddmp_testdddmp_SOURCES) $(mtr_testmtr_SOURCES) \
 	$(nanotrav_nanotrav_SOURCES) $(st_testst_SOURCES) \
-	$(apps_SOURCES)
+	$(apps_SOURCES) $(expretest_expression_reorder_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -950,8 +951,13 @@ nanotrav_nanotrav_SOURCES = nanotrav/bnet.h nanotrav/ntr.h \
 
 # 添加自己的测试文件
 apps_SOURCES = apps/main.c
+expretest_expression_reorder_SOURCES = expretest/expression_reorder.c
 
 apps_CPPFLAGS = -I$(top_srcdir)/cudd -I$(top_srcdir)/mtr \
+  -I$(top_srcdir)/epd -I$(top_srcdir)/st -I$(top_srcdir)/dddmp \
+  -I$(top_srcdir)/util
+
+expretest_expression_reorder_CPPFLAGS = -I$(top_srcdir)/cudd -I$(top_srcdir)/mtr \
   -I$(top_srcdir)/epd -I$(top_srcdir)/st -I$(top_srcdir)/dddmp \
   -I$(top_srcdir)/util
 
@@ -960,6 +966,9 @@ nanotrav_nanotrav_CPPFLAGS = -I$(top_srcdir)/cudd -I$(top_srcdir)/mtr \
   -I$(top_srcdir)/util
 
 apps_LDADD = dddmp/libdddmp.la \
+	cudd/libcudd.la
+
+expretest_expression_reorder_LDADD = dddmp/libdddmp.la \
 	cudd/libcudd.la
 
 nanotrav_nanotrav_LDADD = dddmp/libdddmp.la \
@@ -1393,6 +1402,10 @@ apps/$(am__dirstamp):
 	@$(MKDIR_P) apps
 	@: > apps/$(am__dirstamp)
 
+expretest/$(am__dirstamp):
+	@$(MKDIR_P) expretest
+	@: > expretest/$(am__dirstamp)
+
 nanotrav/$(am__dirstamp):
 	@$(MKDIR_P) nanotrav
 	@: > nanotrav/$(am__dirstamp)
@@ -1427,6 +1440,9 @@ apps/main$(EXEEXT): $(apps_OBJECTS) $(apps_DEPENDENCIES) apps/$(am__dirstamp)
 	@rm -f apps/main$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(apps_OBJECTS) $(apps_LDADD) $(LIBS)
 
+expretest/expression_reorder$(EXEEXT): $(expretest_expression_reorder_OBJECTS) $(expretest_expression_reorder_DEPENDENCIES) expretest/$(am__dirstamp)
+	@rm -f expretest/expression_reorder$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(expretest_expression_reorder_OBJECTS) $(expretest_expression_reorder_LDADD) $(LIBS)
 
 st/st_testst-testst.$(OBJEXT): st/$(am__dirstamp) \
 	st/$(DEPDIR)/$(am__dirstamp)
@@ -2407,6 +2423,12 @@ apps/main.o: apps/main.c
 	$(AM_V_at)$(am__mv) apps/$(DEPDIR)/main.Tpo apps/$(DEPDIR)/main.Po
 # 方便起见这里不写 apps/main.obj的生成指令,即没有考虑在windows上实现
 
+expretest/expression_reorder.o: expretest/expression_reorder.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(expretest_expression_reorder_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) \
+	-MT expretest/expression_reorder.o -MD -MP -MF expretest/$(DEPDIR)/expression_reorder.Tpo \
+	-c -o expretest/expression_reorder.o `test -f 'expretest/expression_reorder.c' || echo '$(srcdir)/'`expretest/expression_reorder.c
+	$(AM_V_at)$(am__mv) expretest/$(DEPDIR)/expression_reorder.Tpo expretest/$(DEPDIR)/expression_reorder.Po
+
 nanotrav/nanotrav_nanotrav-main.o: nanotrav/main.c
 	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(nanotrav_nanotrav_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT nanotrav/nanotrav_nanotrav-main.o -MD -MP -MF nanotrav/$(DEPDIR)/nanotrav_nanotrav-main.Tpo -c -o nanotrav/nanotrav_nanotrav-main.o `test -f 'nanotrav/main.c' || echo '$(srcdir)/'`nanotrav/main.c
 	$(AM_V_at)$(am__mv) nanotrav/$(DEPDIR)/nanotrav_nanotrav-main.Tpo nanotrav/$(DEPDIR)/nanotrav_nanotrav-main.Po
@@ -3017,6 +3039,15 @@ apps-clean:
 	-rm -f apps/main${EXEEXT}
 	-rm apps/*.o
 
+.PHONY: expretest expretest-clean
+
+expretest:
+	${MAKE} ${AM_MAKEFLAGS} expretest/expression_reorder${EXEEXT}
+
+expretest-clean:
+	-rm -f expretest/expression_reorder${EXEEXT}
+	-rm -f expretest/*.o
+	
 all-am: Makefile $(LTLIBRARIES) $(HEADERS) config.h
 installdirs:
 	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(includedir)"; do \
